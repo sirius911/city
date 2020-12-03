@@ -8,4 +8,16 @@
 # define RCLK1	10 
 # define RCLK2	11
 
+#include <wiringPi.h>
+#include <stdio.h>
+#include <unistd.h>
+#include "includes/ft_printf.h"
+#include "includes/libft.h"
+
+
+void	SIPO (int byte);
+void	pulse (int pin);
+int 	power_2(int x);
+void	init();
+
 #endif
