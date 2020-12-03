@@ -1,17 +1,31 @@
-#include <wiringPi.h>
+//#include <wiringPi.h>
 #include <stdio.h>
 #include <unistd.h>
-#include "printf/includes/ft_printf.h"
-#include "printf/libft/libft.h"
+#include "includes/ft_printf.h"
+#include "includes/libft.h"
+#include "includes/city.h"
 
-int	SER	= 12;
-int	RCLK	= 10;
-int	SRCLK	= 14;
-unsigned char	LED[8] = {0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80};
-void	SIPO (unsigned char byte);
+int	LED[NB_LED];
+void	SIPO (int byte);
 void	pulse (int pin);
+
+int 	power_2(int x)
+{
+	if(x == 0)
+		return(1);
+	return(2 * power_2(x - 1));
+}
+
 void	init()
 {
+	int 	i;
+
+	i = 0;
+	while(i < NB_LED)
+	{
+		LED[i] = power_2(i);
+		i++;
+	}
 	pinMode (SER, OUTPUT);
 	pinMode (RCLK, OUTPUT);
 	pinMode (SRCLK, OUTPUT);
@@ -20,37 +34,35 @@ void	init()
 	digitalWrite (RCLK, 0);
 }
 
-void	delayMS(int x)
-{
-	usleep(x * 5000);
-}
+// void	delayMS(int x)
+// {
+// 	usleep(x * 5000);
+// }
+
 
 int	main(void)
 {
-	if (wiringPiSetup() == -1)
-	{
-		printf("Setup wiringPi failed!");
-		return(1);
-	}
-	init();
 	int i;
-	for(i = 0; i < 8; i++)
+
+	i = 0;
+	init();
+	while(i < NB_LED)
 	{
+		ft_printf("\nLED[%2d]=%08x ==> [%032b]\t", i, LED[i], LED[i]);
 		SIPO(LED[i]);
-		pulse(RCLK);
-		delayMS(100);
-		//printf (" i = %d", i);
+		i++;
 	}
-	digitalWrite(RCLK, 1);
+	return(0);
 }
 
-void	SIPO (unsigned char byte)
+void	SIPO (int byte)
 {
 	int	i;
 
-	ft_printf("byte=%u [%08b]\n", byte, byte);
-	for(i = 0; i < 8; i++)
+	ft_printf("byte=%x [%032b]\t", byte, byte);
+	for(i = 0; i <= 32; i++)
 	{
+		ft_printf("%x",((byte & (0x80000000 >> i)) > 0));
 		digitalWrite(SER,((byte & (0x80 >> i)) > 0));
 		pulse(SRCLK);
 	}
