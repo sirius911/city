@@ -9,10 +9,6 @@ int 	power_2(int x)
 
 void	init()
 {
-	int 	i;
-
-	i = 0;
-	printf("init()\n");
 	pinMode(MOSI, OUTPUT);
 	pinMode(RCLK1, OUTPUT);
 	pinMode(RCLK2, OUTPUT);
@@ -34,7 +30,7 @@ void	SIPO (int byte)
 
 	for(i = 0; i < 16; i++)
 	{
-		printf("%0x",((byte &(0x8000 >> i)) > 0));
+		//printf("%0x",((byte &(0x8000 >> i)) > 0));
 		digitalWrite(MOSI,((byte & (0x8000 >> i)) > 0));
 		pulse(SCLK);
 	}

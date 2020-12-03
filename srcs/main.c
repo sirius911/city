@@ -2,10 +2,10 @@
 
 int	main(void)
 {
-	int 	i;
 	char	ligne[25];
+	int	num_led;
 
-	i = 0;
+	num_led = 0;
 	if(wiringPiSetup() == -1)
 	{
 		ft_printf("Setup wiringPi failed!\n");
@@ -20,10 +20,9 @@ int	main(void)
 			fprintf(stderr, "integer value expected\n");
 			continue;
 		}
-		num_led;
 		if(num_led >= 0 && num_led < NB_LED)
 		{
-			printf("\nLED #%d = %x\t", num_led, power_2(num_led));
+			printf("\nLED #%d = %x\n", num_led, power_2(num_led));
 			if(num_led < 16)
 			{
 				SIPO(power_2(num_led));

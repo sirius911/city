@@ -33,7 +33,7 @@ all : $(NAME)
 			@echo "compilation : "$< "\033[32mok\033[0m"
 
 $(NAME): $(OBJ)
-	@$(CC) $(FLAGS) $(HEADER) $(OBJ) -o $(NAME) -L./lib -lftprintf
+	@$(CC) $(FLAGS) $(HEADER) $(OBJ) -o $(NAME) -L./lib -lftprintf -lwiringPi
 	@echo "création de city : \033[32mok\033[0m"
 
 clean:

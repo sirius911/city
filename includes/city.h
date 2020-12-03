@@ -11,8 +11,8 @@
 #include <wiringPi.h>
 #include <stdio.h>
 #include <unistd.h>
-#include "includes/ft_printf.h"
-#include "includes/libft.h"
+#include "ft_printf.h"
+#include "libft.h"
 
 
 void	SIPO (int byte);
