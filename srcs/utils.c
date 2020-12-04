@@ -7,8 +7,16 @@ int 	power_2(int x)
 	return(2 * power_2(x - 1));
 }
 
-void	init()
+void	init(t_led *led)
 {
+	int 	i;
+
+	i = 0;
+	while(i < NB_LED)
+	{
+		led[i].on = OFF;
+		i++;
+	}
 	pinMode(MOSI, OUTPUT);
 	pinMode(RCLK1, OUTPUT);
 	pinMode(RCLK2, OUTPUT);
@@ -22,23 +30,4 @@ void	init()
 void	delayMS(int x)
 {
  	usleep(x * 1000);
-}
-
-void	SIPO (int byte)
-{
-	int	i;
-
-	for(i = 0; i < 16; i++)
-	{
-		//printf("%0x",((byte &(0x8000 >> i)) > 0));
-		digitalWrite(MOSI,((byte & (0x8000 >> i)) > 0));
-		pulse(SCLK);
-	}
-}
-
-void	pulse(int pin)
-{
-	digitalWrite(pin, 1);
-
-	digitalWrite(pin, 0);
 }

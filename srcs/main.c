@@ -3,7 +3,8 @@
 int	main(void)
 {
 	char	ligne[25];
-	int	num_led;
+	int		num_led;
+	t_led	led[NB_LED];
 
 	num_led = 0;
 	if(wiringPiSetup() == -1)
@@ -11,7 +12,7 @@ int	main(void)
 		ft_printf("Setup wiringPi failed!\n");
 		return (-1);
 	}
-	init();
+	init(led);
 	printf("\nEnter num of LED : ");
 	while(fgets(ligne, 80, stdin) != NULL)
 	{
@@ -22,6 +23,8 @@ int	main(void)
 		}
 		if(num_led >= 0 && num_led < NB_LED)
 		{
+			led[num_led].on = !led[num_led].on;
+			send(led);
 			printf("\nLED #%d = %x\n", num_led, power_2(num_led));
 			if(num_led < 16)
 			{
@@ -42,6 +45,7 @@ int	main(void)
 		}
 		else
 			printf(" Error : NB_LED = %d\n",NB_LED);
+		print_led(led);
 		printf("\nEnter num of LED : ");
 	}		
 	digitalWrite(SCLK, 1);

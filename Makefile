@@ -16,7 +16,7 @@ NAME = city
 
 #	Sources
 
-SRC			=	./srcs/main.c ./srcs/utils.c
+SRC			=	./srcs/main.c ./srcs/utils.c ./srcs/leds.c
 
 CC			=	gcc
 
@@ -34,6 +34,7 @@ all : $(NAME)
 
 $(NAME): $(OBJ)
 	@$(CC) $(FLAGS) $(HEADER) $(OBJ) -o $(NAME) -L./lib -lftprintf -lwiringPi
+	#@$(CC) $(FLAGS) $(HEADER) $(OBJ) -o $(NAME) -L./lib -lftprintf
 	@echo "création de city : \033[32mok\033[0m"
 
 clean:
