@@ -3,7 +3,7 @@ CFLAGS	= -O3 #Option d'optimisation du programme
 LDFLAGS	= -lSDL 
 NAME	= city  #Nom du programme à modifier
 
-SRC = test-sdl2.c
+SRC = srcs/test-sdl2.c
 
 all: $(NAME)
 
