@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=city
+Comment=utilitaire pour la carte 23027
+Exec=/home/pi/city/city
+Icon=/home/pi/city/img/city.png
+Terminal=true
+Type=Application
+Categories=
+Path=/home/pi/city/
