@@ -42,6 +42,7 @@ int				init_city(t_city *city)
 
 void			close_city(t_city *city)
 {
+	all_state(city->out, ALL, LOW);
 	SDL_FreeSurface(city->back);
     SDL_FreeSurface(city->led);
     SDL_FreeSurface(city->button);
