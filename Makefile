@@ -1,9 +1,9 @@
-CC	= gcc    #Commande du compilateur
-CFLAGS	= -O3 #Option d'optimisation du programme
+CC	= clang    #Commande du compilateur
+CFLAGS	= -Wall -Werror -Wextra 
 LDFLAGS	= -lSDL 
 NAME	= city  #Nom du programme à modifier
 
-SRC = srcs/test-sdl2.c
+SRC = srcs/test-sdl2.c srcs/out.c srcs/city_tools.c srcs/python.c
 
 all: $(NAME)
 
@@ -16,7 +16,7 @@ $(NAME): $(OBJ)
 	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LDFLAGS)
 
 clean:	
-	rm -fr *.o
+	rm -fr srcs/*.o
 
 fclean: clean
 	rm -fr ${NAME}
